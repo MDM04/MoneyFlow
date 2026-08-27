@@ -1,39 +1,42 @@
-import styled from "styled-components"
-import logoImg from "../assets/MF.svg"
+import styled from "styled-components";
+import logoImg from "../assets/Logo.png"
 
-const HeaderContainer = styled.header`
-background: ${props => props.theme["gray-900"]};
-padding: 2.5rem;
-`
+export const HeaderContainer = styled.header`
+  background: ${props => props.theme["gray-900"]};
+  padding: 2.5rem 0 7.5rem;
+`;
 
-const HeaderContent = styled.div`
-width: 100%;
-max-width: 1120px;
-margin: 0;
-padding: 0 1.5rem;
+export const HeaderContent = styled.div`
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 
-display: flex;
-justify-content: space-between;
-align-items: center;
-`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-const NewTransactionButton = styled.button`
-height: 50px;
-border: 0;
-background: ${props=> props.theme["green-500"]};
-color: ${props=>props.theme["white"]};
-font-weight: bold;
-padding: 0 1.25rem;
-border-radius: 6px;
-cursor: pointer;
-transition: background-color 0.2s;
+  img {
+    width: 160px;
+    height: 55px;
+  }
+`;
 
-&:hover {
-    background: ${props=> props.theme["green-700"]};
+export const NewTransactionButton = styled.button`
+  height: 50px;
+  border: 0;
+  background: ${props => props.theme["green-500"]};
+  color: ${props => props.theme["white"]};
+  font-weight: bold;
+  padding: 0 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
 
-}
-`
-
+  &:hover {
+    background: ${props => props.theme["green-700"]};
+    transition: background-color 0.2s;
+  }
+`;
 
 
 export function Header() {
