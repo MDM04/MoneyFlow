@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Header } from "../components/Header";
 import { Summary } from "../components/Summary";
+import { SearchForm } from "./SearchForm";
 
 const TransactionsContainer = styled.main`
   width: 100%;
@@ -13,7 +14,7 @@ const TransactionsTable = styled.table`
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 0.5rem;
-  /* margin-top: 1.5rem; */
+  margin-top: 1.5rem; 
 
   td {
     padding: 1.25rem 2rem;
@@ -35,7 +36,7 @@ interface PriceHighlightProps {
     variant: "income" | "outcome";
 }
 
- const PriceHighlight = styled.span<PriceHighlightProps>`
+const PriceHighlight = styled.span<PriceHighlightProps>`
   color: ${props => props.variant === "income" ? props.theme["green-300"] : props.theme["red-300"]};
 `;
 
@@ -45,6 +46,7 @@ export function Transactions() {
             <Header />
             <Summary />
             <TransactionsContainer>
+                <SearchForm />
                 <TransactionsTable>
                     <tbody>
                         <tr>
