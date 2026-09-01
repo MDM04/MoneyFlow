@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import logoImg from "../assets/Logo.png"
 import * as Dialog from "@radix-ui/react-dialog"
+import { NewTransactionModal } from "./NewTranactionModal";
 
 export const HeaderContainer = styled.header`
   background: ${props => props.theme["gray-900"]};
@@ -49,13 +50,7 @@ export function Header() {
           <Dialog.Trigger asChild>
             <NewTransactionButton>Nova transação</NewTransactionButton>
           </Dialog.Trigger>
-          <Dialog.Portal>
-            <Dialog.Overlay />
-            <Dialog.Content>
-              <Dialog.Title>Nova Transação</Dialog.Title>
-              <Dialog.Close />
-            </Dialog.Content>
-          </Dialog.Portal>
+          <NewTransactionModal/>
         </Dialog.Root>
       </HeaderContent>
     </HeaderContainer>
