@@ -1,5 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog"
-import { X } from "phosphor-react"
+import { ArrowCircleDown, ArrowCircleUp, X } from "phosphor-react"
 import styled from "styled-components"
 
 
@@ -67,7 +67,37 @@ top: 1.5rem;
 right: 1.5rem;
 line-height: 0;
 cursor: pointer;
-color: ${props=> props.theme["gray-500"]};
+color: ${props => props.theme["gray-500"]};
+`
+
+interface TransactionTypeButtonProps {
+    variant: 'income' | 'outcome'
+}
+
+const TransactionType = styled.div`
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap:1rem;
+margin-top: 0%.5rem;
+
+`
+
+const TransactionTypeButton = styled.button<TransactionTypeButtonProps>`
+background: ${props => props.theme["gray-700"]};
+padding: 1rem;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+border-radius: 6px;
+cursor: pointer;
+border: 0;
+ color: ${props => props.theme["gray-300"]};
+
+svg {
+    color: ${props => props.variant === 'income' ? props.theme["green-300"] : props.theme['red-300']};
+}
+
 `
 
 export function NewTransactionModal() {
@@ -84,6 +114,17 @@ export function NewTransactionModal() {
                     <input type="number" placeholder="Preço" required />
                     <input type="text" placeholder="Categoria" required />
 
+                    <TransactionType>
+                        <TransactionTypeButton variant="income">
+                            <ArrowCircleUp size={24} />
+                            Entrada
+                        </TransactionTypeButton>
+
+                        <TransactionTypeButton variant="outcome">
+                            <ArrowCircleDown size={24} />
+                            Saida
+                        </TransactionTypeButton>
+                    </TransactionType>
                     <button type="submit">Cadastrar</button>
                 </form>
             </Content>
