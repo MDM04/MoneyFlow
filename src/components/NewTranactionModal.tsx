@@ -1,4 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog"
+import * as RadioGroup from '@radix-ui/react-radio-group';
 import { ArrowCircleDown, ArrowCircleUp, X } from "phosphor-react"
 import styled from "styled-components"
 
@@ -74,7 +75,7 @@ interface TransactionTypeButtonProps {
     variant: 'income' | 'outcome'
 }
 
-const TransactionType = styled.div`
+const TransactionType = styled(RadioGroup.Root)`
 display: grid;
 grid-template-columns: repeat(2, 1fr);
 gap:1rem;
@@ -82,7 +83,7 @@ margin-top: 0%.5rem;
 
 `
 
-const TransactionTypeButton = styled.button<TransactionTypeButtonProps>`
+const TransactionTypeButton = styled(RadioGroup.Item) <TransactionTypeButtonProps>`
 background: ${props => props.theme["gray-700"]};
 padding: 1rem;
 display: flex;
@@ -97,6 +98,20 @@ border: 0;
 svg {
     color: ${props => props.variant === 'income' ? props.theme["green-300"] : props.theme['red-300']};
 }
+
+&[data-state='unchecked']:hover {
+    transition: background-color 0.2s;
+    background: ${props => props.theme["gray-600"]};
+  }
+
+  &[data-state='checked'] {
+    color: ${props => props.theme.white};
+    background: ${props => props.variant === 'income' ? props.theme["green-500"] : props.theme["red-500"]};
+
+    svg {
+      color: ${props => props.theme.white};
+    }
+  }
 
 `
 
@@ -115,12 +130,12 @@ export function NewTransactionModal() {
                     <input type="text" placeholder="Categoria" required />
 
                     <TransactionType>
-                        <TransactionTypeButton variant="income">
+                        <TransactionTypeButton variant="income" value="income">
                             <ArrowCircleUp size={24} />
                             Entrada
                         </TransactionTypeButton>
 
-                        <TransactionTypeButton variant="outcome">
+                        <TransactionTypeButton variant="outcome" value="outcome">
                             <ArrowCircleDown size={24} />
                             Saida
                         </TransactionTypeButton>
