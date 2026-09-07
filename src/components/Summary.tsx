@@ -17,7 +17,7 @@ export const SummaryContainer = styled.section`
 `;
 
 interface SummaryCardProps {
-    variant?: "green" | "red"
+    $variant?: "green" | "red"
 }
 
 export const SummaryCard = styled.div<SummaryCardProps>`
@@ -39,13 +39,13 @@ export const SummaryCard = styled.div<SummaryCardProps>`
   }
 
  ${props => {
-  if (props.variant === "green") {
+  if (props.$variant === "green") {
     return `
       background: ${props.theme["green-700"]};
     `;
   }
 
-  if (props.variant === "red") {
+  if (props.$variant === "red") {
     return `
       background: ${props.theme["red-700"]};
     `;
@@ -75,7 +75,7 @@ export function Summary() {
                 <strong>R$ 17.400,00</strong>
             </SummaryCard>
 
-            <SummaryCard variant="green">
+            <SummaryCard $variant="green">
                 <header>
                     <span>Total</span>
                     <CurrencyDollar size={32} color="#fff" />
