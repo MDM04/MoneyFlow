@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from "phosphor-react"
+import { priceFormatter } from "../utils/formatter";
+import { useSummary } from "../hooks/useSummary";
 
 
 
@@ -17,7 +19,7 @@ export const SummaryContainer = styled.section`
 `;
 
 interface SummaryCardProps {
-    $variant?: "green" | "red"
+  $variant?: "green" | "red"
 }
 
 export const SummaryCard = styled.div<SummaryCardProps>`
@@ -39,50 +41,52 @@ export const SummaryCard = styled.div<SummaryCardProps>`
   }
 
  ${props => {
-  if (props.$variant === "green") {
-    return `
+    if (props.$variant === "green") {
+      return `
       background: ${props.theme["green-700"]};
     `;
-  }
+    }
 
-  if (props.$variant === "red") {
-    return `
+    if (props.$variant === "red") {
+      return `
       background: ${props.theme["red-700"]};
     `;
-  }
-}}
+    }
+  }}
 `;
 
 
 export function Summary() {
-    return (
-        <SummaryContainer>
-            <SummaryCard>
-                <header>
-                    <span>Entradas</span>
-                    <ArrowCircleUp size={32} color="#00b37e" />
-                </header>
+ const summary = useSummary()
 
-                <strong>R$ 17.400,00</strong>
-            </SummaryCard>
+  return (
+    <SummaryContainer>
+      <SummaryCard>
+        <header>
+          <span>Entradas</span>
+          <ArrowCircleUp size={32} color="#00b37e" />
+        </header>
 
-            <SummaryCard>
-                <header>
-                    <span>Saídas</span>
-                    <ArrowCircleDown size={32} color="#f75a68" />
-                </header>
+        <strong>{priceFormatter.format(summary.income)}</strong>
+      </SummaryCard>
 
-                <strong>R$ 17.400,00</strong>
-            </SummaryCard>
+      <SummaryCard>
+        <header>
+          <span>Saídas</span>
+          <ArrowCircleDown size={32} color="#f75a68" />
+        </header>
 
-            <SummaryCard $variant="green">
-                <header>
-                    <span>Total</span>
-                    <CurrencyDollar size={32} color="#fff" />
-                </header>
+        <strong>{priceFormatter.format(summary.outcome)}</strong>
+      </SummaryCard>
 
-                <strong>R$ 17.400,00</strong>
-            </SummaryCard>
-        </SummaryContainer>
-    );
+      <SummaryCard $variant="green">
+        <header>
+          <span>Total</span>
+          <CurrencyDollar size={32} color="#fff" />
+        </header>
+
+        <strong>{priceFormatter.format(summary.total)}</strong>
+      </SummaryCard>
+    </SummaryContainer>
+  );
 }

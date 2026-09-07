@@ -1,20 +1,61 @@
 {
-    "transactions": [
-        {
-            "id": 1,
-            "description": "Desenvolvimento de site",
-            "type": "income",
-            "category": "Venda",
-            "price": 4000,
-            "createdAt": "2026-09-04T00:38:21.911Z"
-        },
-        {
-            "id": 2,
-            "description": "Dev FullStack",
-            "type": "outcome",
-            "category": "Venda",
-            "price": 1000,
-            "createdAt": "2026-10-04T00:38:21.911Z"
-        }
-    ]
+  "transactions": [
+    {
+      "id": "1",
+      "description": "Desenvolvimento de site",
+      "type": "income",
+      "category": "Venda",
+      "price": 4000,
+      "createdAt": "2026-09-07T00:38:21.911Z"
+    },
+    {
+      "id": "2",
+      "description": "Dev FullStack",
+      "type": "outcome",
+      "category": "Venda",
+      "price": 1000,
+      "createdAt": "2026-09-07T00:38:21.911Z"
+    },
+    {
+      "id": "3",
+      "description": "Ignite Rocketseat",
+      "type": "outcome",
+      "category": "Educação",
+      "price": 1980,
+      "createdAt": "2026-09-07T19:24:44.505Z"
+    },
+    {
+      "description": "Desenvolvimento de App ",
+      "price": 1000,
+      "category": "Venda",
+      "type": "income",
+      "createdAt": "2026-09-07T23:14:48.129Z",
+      "id": "6ZUaBt8Iw4s"
+    },
+    {
+      "description": "Habuguer",
+      "price": 10,
+      "category": "alimentação",
+      "type": "outcome",
+      "createdAt": "2026-09-07T23:33:02.146Z",
+      "id": "ty5stPL4cDE"
+    },
+    {
+      "description": "Danone",
+      "price": 4,
+      "category": "Alimentação",
+      "type": "outcome",
+      "createdAt": "2026-09-07T23:39:56.914Z",
+      "id": "Elhup1B63Mk"
+    },
+    {
+      "description": "Lanche da tarde",
+      "price": 15,
+      "category": "Alimentação",
+      "type": "outcome",
+      "createdAt": "2026-09-07T23:42:21.015Z",
+      "id": "LJelgmz6LfA"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

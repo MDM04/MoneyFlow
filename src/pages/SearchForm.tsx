@@ -1,5 +1,10 @@
-import { MagnifyingGlass } from "phosphor-react"
-import styled from "styled-components"
+import { MagnifyingGlass } from 'phosphor-react';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useContext } from 'react';
+import { TransactionsContext } from '../contexts/TransactionsContext';
+import styled from 'styled-components';
 
 const SearchFormContainer = styled.form`
 display: flex;
@@ -30,8 +35,14 @@ input {
         color: ${props => props.theme["green-300"]};
         font-weight: bold;
         border-radius: 6px;
+        cursor: pointer;
 
-        &:hover {
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        &:not(:disabled):hover {
              background: ${props => props.theme["green-500"]};
         border: 1px solid ${props => props.theme["green-500"]};
         color: ${props => props.theme.white};
@@ -47,14 +58,36 @@ input {
 `
 
 
+const searchFormSchema = z.object({
+  query: z.string(),
+});
+
+type SearchFormInputs = z.infer<typeof searchFormSchema>;
+
 export function SearchForm() {
-    return (
-        <SearchFormContainer>
-            <input type="text" placeholder="Busque por transações" />
-            <button type="submit">
-                <MagnifyingGlass size={20} />
-                Buscar
-            </button>
-        </SearchFormContainer>
-    )
+  const { fetchTransactions } = useContext(TransactionsContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<SearchFormInputs>({
+    resolver: zodResolver(searchFormSchema),
+  });
+
+  async function handleSearchTransactions(data: SearchFormInputs) {
+
+    await fetchTransactions(data.query)
+  }
+
+  return (
+    <SearchFormContainer onSubmit={handleSubmit(handleSearchTransactions)}>
+      <input type="text" placeholder="Busque por transações" {...register('query')} />
+
+      <button type="submit" disabled={isSubmitting}>
+        <MagnifyingGlass size={20} />
+        Buscar
+      </button>
+    </SearchFormContainer>
+  );
 }

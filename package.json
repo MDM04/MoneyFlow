@@ -5,18 +5,22 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:server": "json-server -w server.json ",
+    "dev:server": "json-server server.json --port 3000 ",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.9.1",
     "@radix-ui/react-dialog": "^1.1.23",
     "@radix-ui/react-radio-group": "^1.4.7",
+    "axios": "^1.20.0",
     "phosphor-react": "^1.4.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "styled-components": "^6.5.3"
+    "react-hook-form": "^7.87.0",
+    "styled-components": "^6.5.3",
+    "zod": "^4.5.4"
   },
   "devDependencies": {
     "@types/node": "^24.13.3",
