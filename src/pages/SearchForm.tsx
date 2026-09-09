@@ -2,9 +2,9 @@ import { MagnifyingGlass } from 'phosphor-react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useContext } from 'react';
 import { TransactionsContext } from '../contexts/TransactionsContext';
 import styled from 'styled-components';
+import { useContextSelector } from 'use-context-selector';
 
 const SearchFormContainer = styled.form`
 display: flex;
@@ -64,8 +64,10 @@ const searchFormSchema = z.object({
 
 type SearchFormInputs = z.infer<typeof searchFormSchema>;
 
-export function SearchForm() {
-  const { fetchTransactions } = useContext(TransactionsContext);
+ export function SearchForm() {
+  const  fetchTransactions  = useContextSelector(TransactionsContext, (context) => {
+    return context.fetchTransactions
+  });
 
   const {
     register,
@@ -91,3 +93,5 @@ export function SearchForm() {
     </SearchFormContainer>
   );
 }
+
+
